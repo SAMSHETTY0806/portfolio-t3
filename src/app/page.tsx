@@ -1,17 +1,21 @@
 "use client";
-
+import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import TypingText from "@/app/TypingText";
 import { Image } from "@/app/components/ui/image"; // Shadcn Image import
 
 export default function Home() {
+   const [menuOpen, setMenuOpen] = useState(false); // State to toggle mobile menu
+
+  const toggleMenu = () => setMenuOpen(!menuOpen);
+
   return (
     <main className="bg-[#000021] text-white font-poppins">
       {/* Header */}
       <header className="bg-[#12123e] h-[90px] flex justify-around items-center relative">
-        <div className="hamburger invert block md:hidden">
-          <Image src="/hamburger.svg" alt="menu" className="w-8 h-8 cursor-pointer" width={32} height={32}/>
+        <div className="hamburger invert block md:hidden cursor-pointer" onClick={toggleMenu}>
+          <Image src="/hamburger.svg" alt="menu" className="w-8 h-8" width={32} height={32}/>
         </div>
         <div className="text-2xl">SAM&#39;S Portfolio</div>
         <div className="right hidden md:flex">
@@ -25,20 +29,34 @@ export default function Home() {
         </div>
 
         {/* Mobile nav */}
-        <div className="mobilenav md:hidden absolute top-[11vh] left-[-140%] w-[20vh] h-[50vh] bg-[#12123e] rounded-lg flex items-center justify-center z-30">
-          <div className="mobileright flex justify-center relative">
-            <div className="close invert absolute right-5">
-              <Image src="/close.svg" alt="close" className="w-6 h-6 cursor-pointer" width={24} height={24}/>
-            </div>
-            <ul className="flex flex-col space-y-12 text-center">
-              {["Home", "About", "Experience", "Projects", "Contact"].map((item) => (
-                <li key={item}>
-                  <a href={`#${item}`} className="hover:text-[#7676d6]">{item}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
+        <div
+  className={`mobilenav md:hidden fixed top-0 left-0 h-screen w-[70vw] max-w-[300px] bg-[#12123e] rounded-r-2xl shadow-lg z-50 transform transition-transform duration-300 ${
+    menuOpen ? "translate-x-0" : "-translate-x-full"
+  }`}
+>
+  <div className="mobileright relative flex flex-col h-full">
+    {/* Close button at top-right */}
+    <div className="close invert absolute top-4 right-4 cursor-pointer" onClick={toggleMenu}>
+      <Image src="/close.svg" alt="close" className="w-6 h-6" width={24} height={24}/>
+    </div>
+
+    {/* Menu links */}
+    <ul className="flex flex-col justify-center items-center h-full space-y-6 text-center mt-16">
+      {["Home", "About", "Experience", "Projects", "Contact"].map((item) => (
+        <li key={item}>
+          <a
+            href={`#${item}`}
+            onClick={toggleMenu} // Close menu when a link is clicked
+            className="hover:text-[#7676d6] text-xl"
+          >
+            {item}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</div>
+
       </header>
 
       {/* Home Section */}
@@ -65,12 +83,11 @@ export default function Home() {
             </Link>
 
             <button
-  className="contact-btn border-2 border-purple-800 hover:bg-purple-600 hover:text-white py-2 px-4 rounded-lg transition duration-300"
-  onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
->
-  Contact Us
-</button>
-
+              className="contact-btn border-2 border-purple-800 hover:bg-purple-600 hover:text-white py-2 px-4 rounded-lg transition duration-300"
+              onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
+            >
+              Contact Us
+            </button>
           </div>
 
           <div className="social-container flex gap-4 mt-4">
