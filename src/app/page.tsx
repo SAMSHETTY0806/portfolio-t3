@@ -200,12 +200,40 @@ export default function Home() {
         <h2 className="text-center text-[#ae8cce] text-3xl mb-4">Contact Me</h2>
         <p className="text-center text-gray-400 mb-8">If you would like to discuss a project or have any questions, feel free to reach out!</p>
         <form action="https://api.web3forms.com/submit" method="POST" className="flex flex-col items-center gap-4">
-          <input type="hidden" name="access_key" value="ae01a018-76df-420a-921d-eaff8c907856" />
-          <input type="text" name="name" placeholder="Name" required className="w-1/2 p-2 rounded border border-gray-400 text-black"/>
-          <input type="email" name="email" placeholder="Email" required className="w-1/2 p-2 rounded border border-gray-400 text-black"/>
-          <textarea name="message" placeholder="Message" rows={4} required className="w-1/2 p-2 rounded border border-gray-400 text-black"/>
-          <button type="submit" className="bg-purple-800 hover:bg-purple-600 text-white py-2 px-6 rounded-lg transition duration-300">Submit Form</button>
-        </form>
+  <input type="hidden" name="access_key" value="ae01a018-76df-420a-921d-eaff8c907856" />
+  
+  <input
+    type="text"
+    name="name"
+    placeholder="Name"
+    required
+    className="w-1/2 p-2 rounded border border-gray-400 bg-[#1a1a40] text-white"
+  />
+
+  <input
+    type="email"
+    name="email"
+    placeholder="Email"
+    required
+    className="w-1/2 p-2 rounded border border-gray-400 bg-[#1a1a40] text-white"
+  />
+
+  <textarea
+    name="message"
+    placeholder="Message"
+    rows={4}
+    required
+    className="w-1/2 p-2 rounded border border-gray-400 bg-[#1a1a40] text-white"
+  />
+
+  <button
+    type="submit"
+    className="bg-purple-800 hover:bg-purple-600 text-white py-2 px-6 rounded-lg transition duration-300"
+  >
+    Submit Form
+  </button>
+</form>
+
       </motion.section>
     </main>
   );
