@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import { type Metadata } from "next";
 import { Geist } from "next/font/google";
 import { TRPCReactProvider } from "@/trpc/react";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "Sampanna Portfolio",
@@ -19,10 +20,16 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${geist.variable}`}>
+      <head>
+        {/* Font Awesome CDN */}
+        <Script
+          src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js"
+          strategy="beforeInteractive"
+        />
+      </head>
       <body>
         <TRPCReactProvider>{children}</TRPCReactProvider>
       </body>
     </html>
   );
 }
-
