@@ -133,7 +133,7 @@ export default function Home() {
             { title: "Event Coordinator", org: "AIML Dept", period: "Aug 2024 – May 2025", skills: "Event Management" },
             { title: "Event Coordinator", org: "Incridea NMAMIT", period: "Dec 2024 – Feb 2025", skills: "Communication · Teamwork" },
           ].map((exp) => (
-            <div key={exp.title} className="bg-[#1a1a40] border border-gray-500 p-6 rounded-2xl hover:scale-105 transition duration-300">
+            <div key={`${exp.title}-${exp.org}`} className="bg-[#1a1a40] border border-gray-500 p-6 rounded-2xl hover:scale-105 transition duration-300">
               <h3 className="text-xl text-[#19d090] mb-2">{exp.title}</h3>
               <p className="text-gray-300">{exp.org}</p>
               <p className="text-sm text-gray-400 mb-2">{exp.period}</p>
@@ -228,8 +228,8 @@ export default function Home() {
         <h2 className="text-green-500 text-xl mb-2 subtitle">Checkout My</h2>
         <h1 className="text-4xl font-bold mb-6 title">Tech Ecosystem</h1>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 max-w-[800px] mx-auto">
-          {["React","Tailwindcss","Firebase","Node.js","Python","Scikit","Express","Flask","Git","GitHub","App-script","Unix-Shell","TensorFlow","NLP","CV","MongoDB","PostgreSQL","PyTorch","SQL","Java","C/C++","Python"].map((tech, idx) => (
-            <div key={`${tech}-${idx}`} className="stack border-2 border-green-500 p-2 rounded-lg hover:bg-green-500 hover:text-[#1a202c] transition cursor-pointer">{tech}</div>
+          {["React","Tailwindcss","Firebase","Node.js","Python","Scikit","Express","Flask","Git","GitHub","App-script","Unix-Shell","TensorFlow","NLP","CV","MongoDB","PostgreSQL","PyTorch","SQL","Java","C/C++"].map((tech) => (
+            <div key={tech} className="stack border-2 border-green-500 p-2 rounded-lg hover:bg-green-500 hover:text-[#1a202c] transition cursor-pointer">{tech}</div>
           ))}
         </div>
       </motion.section>
@@ -355,8 +355,8 @@ export default function Home() {
         skills: "Communication, Leadership",
         logo: "/images/nptel.jpeg"
       }
-    ].map((cert, idx) => (
-      <div key={idx} className="cert-card bg-[#1a1a40] rounded-2xl p-4 text-center shadow-lg hover:scale-105 transition-transform duration-300">
+    ].map((cert) => (
+      <div key={`${cert.title}-${cert.issuer}`} className="cert-card bg-[#1a1a40] rounded-2xl p-4 text-center shadow-lg hover:scale-105 transition-transform duration-300">
         <img src={cert.logo} alt={cert.issuer} className="mx-auto w-16 h-16 mb-4 rounded-full object-contain" />
         <h3 className="font-bold text-white text-lg mb-1">{cert.title}</h3>
         <p className="text-gray-300 mb-1">{cert.issuer}</p>
