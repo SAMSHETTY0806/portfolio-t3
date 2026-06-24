@@ -243,9 +243,9 @@ function ParticleBackground() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const a = particles[i]!;
-          const b = particles[j]!;
+          for (let j = i + 1; j < particles.length; j++) {
+          const a = particles[i];
+          const b = particles[j];
           const dx = a.x - b.x;
           const dy = a.y - b.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
@@ -697,7 +697,7 @@ export default function Home() {
               transition={{ duration: 0.4, delay: i * 0.06 }}
               className="backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl p-5 text-center hover:border-[#19d090]/40 transition-colors duration-300"
             >
-              <img src={cert.logo} alt={cert.issuer} className="mx-auto w-14 h-14 mb-3 rounded-full object-contain" />
+              <Image src={cert.logo} alt={cert.issuer} className="mx-auto w-14 h-14 mb-3 rounded-full object-contain" width={56} height={56} />
               <h3 className="text-white text-sm font-medium leading-snug">{cert.title}</h3>
               <p className="text-gray-400 text-xs mt-1">{cert.issuer}</p>
             </motion.div>
